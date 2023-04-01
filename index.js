@@ -71,3 +71,9 @@ const content = "Some content!";
 fs.writeFile("test.txt", content, (err) => {
   if (err) console.error(err);
 });
+
+const content2 = "Some content!";
+
+fs.appendFile("file.log", content2, (err) => {
+  if (err) console.error(err);
+});
