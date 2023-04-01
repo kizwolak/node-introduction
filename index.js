@@ -77,3 +77,11 @@ const content2 = "Some content!";
 fs.appendFile("file.log", content2, (err) => {
   if (err) console.error(err);
 });
+
+fs.readFile("read.txt", "utf8", (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(data);
+});
