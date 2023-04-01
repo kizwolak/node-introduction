@@ -1,5 +1,6 @@
 const http = require("http");
 const https = require("https");
+const fs = require("fs");
 
 const hostname = "127.0.0.1";
 const port = 3000;
@@ -14,28 +15,26 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-const options = {
+const options1 = {
   hostname: "example.com",
   port: 443,
   path: "/todos",
   method: "GET",
 };
 
-const req = https.request(options, (res) => {
+const req1 = https.request(options1, (res) => {
   console.log(`statusCode: ${res.statusCode}`);
 
   res.on("data", (d) => {
     process.stdout.write(d);
   });
 
-  req.on("error", (error) => {
+  req1.on("error", (error) => {
     console.error(error);
   });
 });
 
-req.end();
-
-const https = require("https");
+req1.end();
 
 const data = JSON.stringify({
   todo: "Buy the milk",
@@ -52,7 +51,7 @@ const options = {
   },
 };
 
-const req = https.request(options, (res) => {
+const req2 = https.request(options, (res) => {
   console.log(`statusCode: ${res.statusCode}`);
 
   res.on("data", (d) => {
@@ -60,9 +59,15 @@ const req = https.request(options, (res) => {
   });
 });
 
-req.on("error", (error) => {
+req2.on("error", (error) => {
   console.error(error);
 });
 
-req.write(data);
-req.end();
+req2.write(data);
+req2.end();
+
+const content = "Some content!";
+
+fs.writeFile("test.txt", content, (err) => {
+  if (err) console.error(err);
+});
